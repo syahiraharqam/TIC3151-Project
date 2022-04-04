@@ -632,7 +632,7 @@ else:
     dtc_acc = accuracy_score(y_test, dtc_y_pred)*100
 
     dt_par = pd.DataFrame({'Parameter': ['criterion', 'splitter', 'max_depth']})
-    dt_par['Value'] = [criterion, splitter, params['max_depth']]
+    dt_par['Value'] = [criterion, splitter, str(params['max_depth'])]
     st.dataframe(dt_par)
 
     st.write('Accuracy:', dtc_acc)
