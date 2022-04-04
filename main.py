@@ -732,10 +732,10 @@ else:
     sil_score = silhouette_score(X_encoded_cluster, km_model.labels_)
     st.write('Silhouette score (n =', params["n_clusters"], ' ):', sil_score)
 
-    # Plot silhouette visualizer
+    # Plot silhouette visualize
+    fig_sil, axes_sil = plt.subplots(nrows=1, ncols=1, figsize=(4,4), dpi=3000)
     silhouette_visualizer(km_model, X_encoded_cluster, colors='yellowbrick')
-    st.set_option('deprecation.showPyplotGlobalUse', False)
-    st.pyplot()
+    st.pyplot(fig_sil)
 
     # Plot scatter
     sns.scatterplot(x='Loan_Amount', y='Total_Sum_of_Loan', hue='Cluster', data=df_clusters)
