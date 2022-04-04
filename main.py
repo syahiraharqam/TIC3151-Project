@@ -43,7 +43,7 @@ def Day_of_Vaccine_Distribution_A(Population,day_to_done,maximum_Capacity_for_Pe
 
   # if the population divide with maximum capacity per day no remainder, will go into this condition
   if(Population%maximum_Capacity_for_Per_Day==0):
-      st.write("Day 1 until Day",day_to_done,":",Total_Vaccine_Needed) # display the day to done and how many vaccine been distributed
+      st.markdown("Day 1 until Day",day_to_done,":",Total_Vaccine_Needed) # display the day to done and how many vaccine been distributed
       Same_Day = day_to_done
       same_day = 1
       return Previous_Vaccine_Needed,Same_Day,same_day   #return back the value
@@ -51,19 +51,19 @@ def Day_of_Vaccine_Distribution_A(Population,day_to_done,maximum_Capacity_for_Pe
   # if the population divide with maximum capacity per day got remainder, will go into this condition
   else:
       Total_Vaccine_Needed = (day_to_done-1) * maximum_Capacity_for_Per_Day 
-      st.write("Day 1 until Day",day_to_done-1,":",Total_Vaccine_Needed) 
+      st.markdown("Day 1 until Day",day_to_done-1,":",Total_Vaccine_Needed) 
       Last_Day_Vaccine_Needed = Population - Total_Vaccine_Needed 
       
     
       if(Last_Day_Vaccine_Needed>maximum_Capacity_for_Per_Day and Last_Day_Vaccine_Needed%maximum_Capacity_for_Per_Day!=0): #If the last day is over the maximum capacity per day, it will go into this condition
          Next_day = Last_Day_Vaccine_Needed - maximum_Capacity_for_Per_Day
-         st.write("Day",Last_Day-1,":",maximum_Capacity_for_Per_Day)
-         st.write("Day",Last_Day,":",Next_day)
+         st.markdown("Day",Last_Day-1,":",maximum_Capacity_for_Per_Day)
+         st.markdown("Day",Last_Day,":",Next_day)
          Previous_Vaccine_Needed = Next_day
          Same_Day = Last_Day
          same_day = 3
       else: # else this part will calculate the last day and return the value
-         st.write("Day",Last_Day,":",Last_Day_Vaccine_Needed)
+         st.markdown("Day",Last_Day,":",Last_Day_Vaccine_Needed)
          Previous_Vaccine_Needed = Last_Day_Vaccine_Needed 
          Same_Day = Last_Day
          same_day = 2
@@ -88,7 +88,7 @@ def Day_of_Vaccine_Distribution_B(Population,day_to_done,maximum_Capacity_for_Pe
        
        Same_Day_Vaccination_Needed = maximum_Capacity_for_Per_Day - Previous_Vaccine_Needed # To calculate how many vaccine distribution in the same day 
 
-       st.write('Day',Same_Day,':',Same_Day_Vaccination_Needed)
+       st.markdown('Day',Same_Day,':',Same_Day_Vaccination_Needed)
        
        Total_Vaccine_Needed = (day_to_done-1) * maximum_Capacity_for_Per_Day
        Total_Vaccine_Needed_B = Population - Same_Day_Vaccination_Needed
@@ -98,20 +98,20 @@ def Day_of_Vaccine_Distribution_B(Population,day_to_done,maximum_Capacity_for_Pe
        if(Larger<Total_Vaccine_Needed_B):
                  
                  Reminder = m.floor(Total_Vaccine_Needed_B%maximum_Capacity_for_Per_Day)
-                 st.write("Day",Same_Day+1,"until Day",Same_Day+day_to_done-1,":",Larger) # display the day to done and how many vaccine been distributed
+                 st.markdown("Day",Same_Day+1,"until Day",Same_Day+day_to_done-1,":",Larger) # display the day to done and how many vaccine been distributed
                  Last_Day_Vaccine_Needed_B = Population - Same_Day_Vaccination_Needed - Total_Vaccine_Needed_B + Reminder
                  
                 #If the last day is over the maximum capacity per day, it will go into this condition
                  if( Last_Day_Vaccine_Needed_B>(maximum_Capacity_for_Per_Day*Same_Day+day_to_done-1-Same_Day) and Last_Day_Vaccine_Needed_B%maximum_Capacity_for_Per_Day!=0):
                      Next_day = Last_Day_Vaccine_Needed_B - maximum_Capacity_for_Per_Day
-                     st.write("Day",Last_Day-1,":",maximum_Capacity_for_Per_Day)
-                     st.write("Day",Last_Day,":",Next_day)
+                     st.markdown("Day",Last_Day-1,":",maximum_Capacity_for_Per_Day)
+                     st.markdown("Day",Last_Day,":",Next_day)
                      Previous_Vaccine_Needed_B = Next_day
                      Same_Day1 = 0
                      Same_Day = Last_Day
                      same_day = 2
                  else: # else this part will calculate the last day and return the value
-                     st.write("Day",Last_Day,":",Last_Day_Vaccine_Needed_B)
+                     st.markdown("Day",Last_Day,":",Last_Day_Vaccine_Needed_B)
                      Previous_Vaccine_Needed_B = Last_Day_Vaccine_Needed_B
                      Same_Day1 = 0
                      Same_Day = Last_Day
@@ -122,7 +122,7 @@ def Day_of_Vaccine_Distribution_B(Population,day_to_done,maximum_Capacity_for_Pe
   
        else: # else if the population divide with maximum capacity per day no remainder, will go into this condition
                  Total_Vaccine_Needed_B = Population - Same_Day_Vaccination_Needed
-                 st.write("Day",Same_Day+1,"until Day",Same_Day+day_to_done-1,":",Total_Vaccine_Needed_B)
+                 st.markdown("Day",Same_Day+1,"until Day",Same_Day+day_to_done-1,":",Total_Vaccine_Needed_B)
                  Previous_Vaccine_Needed = Total_Vaccine_Needed_B
                  Last_Day_Vaccine_Needed_B = Population - Same_Day_Vaccination_Needed - Total_Vaccine_Needed_B 
                  Same_Day1 = Same_Day+1
@@ -131,23 +131,23 @@ def Day_of_Vaccine_Distribution_B(Population,day_to_done,maximum_Capacity_for_Pe
 
                  #If the last day is over the maximum capacity per day, it will go into this condition
                  if(Last_Day_Vaccine_Needed_B==0):
-                    st.write('')
+                    st.markdown('')
 
                  elif(Last_Day_Vaccine_Needed_B>0):
-                     st.write("Day",Last_Day,":",Last_Day_Vaccine_Needed_B)
+                     st.markdown("Day",Last_Day,":",Last_Day_Vaccine_Needed_B)
                      Previous_Vaccine_Needed_B = Last_Day_Vaccine_Needed_B
                      Same_Day = Last_Day
                      same_day = 1
 
                  elif(Last_Day_Vaccine_Needed>maximum_Capacity_for_Per_Day and Last_Day_Vaccine_Needed_B%maximum_Capacity_for_Per_Day!=0):
                      Next_day = Last_Day_Vaccine_Needed_B - maximum_Capacity_for_Per_Day
-                     st.write("Day",Last_Day-1,":",maximum_Capacity_for_Per_Day)
-                     st.write("Day",Last_Day,":",Next_day)
+                     st.markdown("Day",Last_Day-1,":",maximum_Capacity_for_Per_Day)
+                     st.markdown("Day",Last_Day,":",Next_day)
                      Previous_Vaccine_Needed_B = Next_day
                      Same_Day = Last_Day
                      same_day = 2
                  elif(Last_Day_Vaccine_Needed>maximum_Capacity_for_Per_Day): # else this part will calculate the last day and return the value
-                     st.write("Day",Last_Day,":",Last_Day_Vaccine_Needed_B)
+                     st.markdown("Day",Last_Day,":",Last_Day_Vaccine_Needed_B)
                      Previous_Vaccine_Needed_B = Last_Day_Vaccine_Needed_B
                      Same_Day = Last_Day
                      same_day = 1
@@ -161,26 +161,26 @@ def Day_of_Vaccine_Distribution_B(Population,day_to_done,maximum_Capacity_for_Pe
 
        # if the population divide with maximum capacity per day no remainder, will go into this condition
        if(Population%maximum_Capacity_for_Per_Day==0):
-               st.write("Day",Same_Day+1,"until Day",day_to_done+Same_Day,":",Total_Vaccine_Needed)
+               st.markdown("Day",Same_Day+1,"until Day",day_to_done+Same_Day,":",Total_Vaccine_Needed)
                Same_Day1 = 0
                Same_Day = day_to_done+Same_Day
                same_day = 1
                return Previous_Vaccine_Needed_B,Same_Day,same_day,Same_Day1
        else:
                Total_Vaccine_Needed = (day_to_done-1) * maximum_Capacity_for_Per_Day 
-               st.write("Day",Same_Day+1,"until Day",day_to_done-1,":",Total_Vaccine_Needed) 
+               st.markdown("Day",Same_Day+1,"until Day",day_to_done-1,":",Total_Vaccine_Needed) 
                Last_Day_Vaccine_Needed = Population - Total_Vaccine_Needed 
                Same_Day1 = 0
     
                if(Last_Day_Vaccine_Needed>maximum_Capacity_for_Per_Day and Last_Day_Vaccine_Needed%maximum_Capacity_for_Per_Day!=0): #If the last day is over the maximum capacity per day, it will go into this condition
                   Next_day = Last_Day_Vaccine_Needed - maximum_Capacity_for_Per_Day
-                  st.write("Day",Last_Day-1,":",maximum_Capacity_for_Per_Day)
-                  st.write("Day",Last_Day,":",Next_day)
+                  st.markdown("Day",Last_Day-1,":",maximum_Capacity_for_Per_Day)
+                  st.markdown("Day",Last_Day,":",Next_day)
                   Previous_Vaccine_Needed = Next_day
                   Same_Day = Last_Day
                   same_day = 3
                else: # else this part will calculate the last day and return the value
-                  st.write("Day",Last_Day,":",Last_Day_Vaccine_Needed)
+                  st.markdown("Day",Last_Day,":",Last_Day_Vaccine_Needed)
                   Previous_Vaccine_Needed = Last_Day_Vaccine_Needed 
                   Same_Day = Last_Day
                   same_day = 2
@@ -205,7 +205,7 @@ def Day_of_Vaccine_Distribution_C(Population,day_to_done,maximum_Capacity_for_Pe
        
        Same_Day_Vaccination_Needed = maximum_Capacity_for_Per_Day - Previous_Vaccine_Needed # To calculate how many vaccine distribution in the same day 
 
-       st.write('Day',Same_Day,':',Same_Day_Vaccination_Needed)
+       st.markdown('Day',Same_Day,':',Same_Day_Vaccination_Needed)
        
        Total_Vaccine_Needed = (day_to_done-1) * maximum_Capacity_for_Per_Day
        Total_Vaccine_Needed_C = Population - Same_Day_Vaccination_Needed  
@@ -215,68 +215,68 @@ def Day_of_Vaccine_Distribution_C(Population,day_to_done,maximum_Capacity_for_Pe
        if(Larger<Total_Vaccine_Needed_C):
                  
                  Reminder = m.floor(Total_Vaccine_Needed_C%maximum_Capacity_for_Per_Day)
-                 st.write("Day",Same_Day+1,"until Day",Same_Day+day_to_done-1,":",Total_Vaccine_Needed_C - Reminder) # display the day to done and how many vaccine been distributed
+                 st.markdown("Day",Same_Day+1,"until Day",Same_Day+day_to_done-1,":",Total_Vaccine_Needed_C - Reminder) # display the day to done and how many vaccine been distributed
                  Last_Day_Vaccine_Needed_C = Population - Same_Day_Vaccination_Needed - Total_Vaccine_Needed_C  + Reminder
                  
                 #If the last day is over the maximum capacity per day, it will go into this condition
                  if(Last_Day_Vaccine_Needed_C>(maximum_Capacity_for_Per_Day*Same_Day+day_to_done-1-Same_Day) and Last_Day_Vaccine_Needed_C%maximum_Capacity_for_Per_Day!=0):
                      Next_day = Last_Day_Vaccine_Needed_C - maximum_Capacity_for_Per_Day
-                     st.write("Day",Last_Day-1,":",maximum_Capacity_for_Per_Day)
-                     st.write("Day",Last_Day,":",Next_day)
+                     st.markdown("Day",Last_Day-1,":",maximum_Capacity_for_Per_Day)
+                     st.markdown("Day",Last_Day,":",Next_day)
                      
                  else: # else this part will calculate the last day and return the value
-                     st.write("Day",Last_Day,":",Last_Day_Vaccine_Needed_C)
+                     st.markdown("Day",Last_Day,":",Last_Day_Vaccine_Needed_C)
                      
                 
   
        else: # else if the population divide with maximum capacity per day no remainder, will go into this condition
                  
-                 st.write("Day",Same_Day+1,"until Day",Same_Day+day_to_done-1,":",Total_Vaccine_Needed_C)
+                 st.markdown("Day",Same_Day+1,"until Day",Same_Day+day_to_done-1,":",Total_Vaccine_Needed_C)
                  Last_Day_Vaccine_Needed_C = Population - Same_Day_Vaccination_Needed - Total_Vaccine_Needed_C
                  
                  #If the last day is over the maximum capacity per day, it will go into this condition
                  if(Last_Day_Vaccine_Needed_C==0):
-                    st.write('')
+                    st.markdown('')
                  elif(Last_Day_Vaccine_Needed_C>(maximum_Capacity_for_Per_Day*Same_Day+day_to_done-1-Same_Day) and Last_Day_Vaccine_Needed_C%maximum_Capacity_for_Per_Day!=0):
                      Next_day = Last_Day_Vaccine_Needed_C - maximum_Capacity_for_Per_Day
-                     st.write("Day",Last_Day-1,":",maximum_Capacity_for_Per_Day)
-                     st.write("Day",Last_Day,":",Next_day)
+                     st.markdown("Day",Last_Day-1,":",maximum_Capacity_for_Per_Day)
+                     st.markdown("Day",Last_Day,":",Next_day)
                      
                  else: # else this part will calculate the last day and return the value
-                     st.write("Day",Last_Day,":",Last_Day_Vaccine_Needed_C)
+                     st.markdown("Day",Last_Day,":",Last_Day_Vaccine_Needed_C)
                      
   elif(Larger1!=Last_Day_Vaccine_Needed):
                Same_Day_Vaccination_Needed = Larger1 - Previous_Vaccine_Needed # To calculate how many vaccine distribution in the same day 
 
-               st.write('Day',Same_Day,':',Same_Day_Vaccination_Needed)
+               st.markdown('Day',Same_Day,':',Same_Day_Vaccination_Needed)
                Last_Day_Vaccine_Needed_C = Population - Same_Day_Vaccination_Needed
                Larger2 = (Same_Day+day_to_done-1 - Same_Day) * maximum_Capacity_for_Per_Day
                if(Last_Day_Vaccine_Needed_C>Larger2):
                  Last_Day_VaccineC = Last_Day_Vaccine_Needed_C - Larger2
-                 st.write("Day",Same_Day+1,"until Day",Same_Day+day_to_done-1,":",Larger2)
-                 st.write('Day',Same_Day+day_to_done,':',Last_Day_VaccineC)
+                 st.markdown("Day",Same_Day+1,"until Day",Same_Day+day_to_done-1,":",Larger2)
+                 st.markdown('Day',Same_Day+day_to_done,':',Last_Day_VaccineC)
                else:
-                 st.write("Day",Same_Day+1,"until Day",Same_Day+day_to_done-1,":",Last_Day_Vaccine_Needed_C)
+                 st.markdown("Day",Same_Day+1,"until Day",Same_Day+day_to_done-1,":",Last_Day_Vaccine_Needed_C)
                     
   else: # If Previous vaccine needed get from the previous function had reach the maximum capacity per day, it will go into this condition
 
        # if the population divide with maximum capacity per day no remainder, will go into this condition
        if(Population%maximum_Capacity_for_Per_Day==0):
-               st.write("Day",Same_Day+1,"until Day",day_to_done+Same_Day,":",Total_Vaccine_Needed)
+               st.markdown("Day",Same_Day+1,"until Day",day_to_done+Same_Day,":",Total_Vaccine_Needed)
                
        else:
                Total_Vaccine_Needed = (day_to_done-1) * maximum_Capacity_for_Per_Day 
-               st.write("Day",Same_Day+1,"until Day",Same_Day+day_to_done-1,":",Total_Vaccine_Needed) 
+               st.markdown("Day",Same_Day+1,"until Day",Same_Day+day_to_done-1,":",Total_Vaccine_Needed) 
                Last_Day_Vaccine_Needed = Population - Total_Vaccine_Needed 
       
     
                if(Last_Day_Vaccine_Needed>maximum_Capacity_for_Per_Day and Last_Day_Vaccine_Needed%maximum_Capacity_for_Per_Day!=0): #If the last day is over the maximum capacity per day, it will go into this condition
                   Next_day = Last_Day_Vaccine_Needed - maximum_Capacity_for_Per_Day
-                  st.write("Day",Last_Day-1,":",maximum_Capacity_for_Per_Day)
-                  st.write("Day",Last_Day,":",Next_day)
+                  st.markdown("Day",Last_Day-1,":",maximum_Capacity_for_Per_Day)
+                  st.markdown("Day",Last_Day,":",Next_day)
                   
                else: # else this part will calculate the last day and return the value
-                  st.write("Day",Last_Day,":",Last_Day_Vaccine_Needed)
+                  st.markdown("Day",Last_Day,":",Last_Day_Vaccine_Needed)
 
 
 def vaccine_csp(maximum_Capacity_for_Per_Day, x, y, z, num_cr, max_cap_cr, rent):
@@ -289,8 +289,8 @@ def vaccine_csp(maximum_Capacity_for_Per_Day, x, y, z, num_cr, max_cap_cr, rent)
   Total = int(x)+int(y)+int(z)
 
   # Display the value that calculated at the top
-  st.write('Day that each age need to took for finish the vaccination')
-  st.write('\nAge above 60          (Vac-A):',m.ceil(Needed_day_for_Age_above_60),'days')
+  st.markdown('## Days that each age need to took for finish the vaccination')
+  st.subheader('\nAge above 60          (Vac-A):',m.ceil(Needed_day_for_Age_above_60),'days')
 
   # Send The variable to function Day_of_Vaccine_Distribution_A to find how many days did Vaccine A been finish distributed
   Population = z
@@ -305,7 +305,7 @@ def vaccine_csp(maximum_Capacity_for_Per_Day, x, y, z, num_cr, max_cap_cr, rent)
   else: 
       Add_Day = same_day
 
-  st.write('\nAge Between 30 and 60 (Vac-B):',int(Needed_day_for_Age_between_30_and_60) + Add_Day ,'days')
+  st.subheader('\nAge Between 30 and 60 (Vac-B):',int(Needed_day_for_Age_between_30_and_60) + Add_Day ,'days')
 
   # Send The variable to function Day_of_Vaccine_Distribution_B to find how many days did Vaccine B been finish distributed
   Population = y
@@ -320,7 +320,7 @@ def vaccine_csp(maximum_Capacity_for_Per_Day, x, y, z, num_cr, max_cap_cr, rent)
   else: 
       Add_Day_B = same_day_b
 
-  st.write('\nAge lower than 30     (Vac-C):',int(Needed_day_for_Age_below_30)+Add_Day_B,'days') 
+  st.subheader('\nAge lower than 30     (Vac-C):',int(Needed_day_for_Age_below_30)+Add_Day_B,'days') 
   # Send The variable to function Day_of_Vaccine_Distribution_C to find how many days did Vaccine C been finish distributed
   Population = x
   max = maximum_Capacity_for_Per_Day
@@ -331,7 +331,7 @@ def vaccine_csp(maximum_Capacity_for_Per_Day, x, y, z, num_cr, max_cap_cr, rent)
 
   #Calculate the Total Day that finish whole process of vaccine distribution
   Total_Day = Needed_day_for_Age_below_30 + Needed_day_for_Age_between_30_and_60 + Needed_day_for_Age_above_60
-  st.write('\nTotal Day:',m.ceil(Total_Day))
+  st.markdown('\nTotal Days:',m.ceil(Total_Day))
 
   # Add the Variable to constraint
   problem = constraint.Problem()
@@ -359,14 +359,14 @@ def vaccine_csp(maximum_Capacity_for_Per_Day, x, y, z, num_cr, max_cap_cr, rent)
           minimum_Cost_Per_Day = Rental_Per_Day
           solution_found = s
 
-  st.write("""  
-  Rental for Per Day Day at each Vaccine Centre
-  CR 1 (RM{}  per day) {}
-  CR 2 (RM{}  per day) {}
-  CR 3 (RM{}  per day) {}
-  CR 4 (RM{}  per day) {}
-  CR 5 (RM{} per day) {}
-  """.format(rent[0], solution_found['CR1'], rent[1], solution_found['CR2'], rent[2], solution_found['CR3'], rent[3], solution_found['CR4'], rent[4], solution_found['CR5']))
+#   st.markdown("""  
+#   Rental for Per Day Day at each Vaccine Centre
+#   CR 1 (RM{}  per day) {}
+#   CR 2 (RM{}  per day) {}
+#   CR 3 (RM{}  per day) {}
+#   CR 4 (RM{}  per day) {}
+#   CR 5 (RM{} per day) {}
+#   """.format(rent[0], solution_found['CR1'], rent[1], solution_found['CR2'], rent[2], solution_found['CR3'], rent[3], solution_found['CR4'], rent[4], solution_found['CR5']))
 
   # Find out the Amount of population for vaccination in last day
   LastDay = Total-(int(Total/maximum_Capacity_for_Per_Day)*maximum_Capacity_for_Per_Day)
@@ -398,27 +398,47 @@ def vaccine_csp(maximum_Capacity_for_Per_Day, x, y, z, num_cr, max_cap_cr, rent)
           minimum_Cost_Per_Day2 = Rental_Per_Day
           solution2_found = s
 
-  st.write(""" 
-  Rental for Last Day at each Vaccine Centre 
-  CR 1 (RM{}  per day) {}
-  CR 2 (RM{}  per day) {}
-  CR 3 (RM{}  per day) {}
-  CR 4 (RM{}  per day) {}
-  CR 5 (RM{} per day) {}
-  """.format(rent[0], solution2_found['CR1'], rent[1], solution2_found['CR2'], rent[2], solution2_found['CR3'], rent[3], solution2_found['CR4'], rent[4], solution2_found['CR5']))
+
+#   st.markdown(""" 
+#   Rental for Last Day at each Vaccine Centre 
+#   CR 1 (RM{}  per day) {}
+#   CR 2 (RM{}  per day) {}
+#   CR 3 (RM{}  per day) {}
+#   CR 4 (RM{}  per day) {}
+#   CR 5 (RM{} per day) {}
+#   """.format(rent[0], solution2_found['CR1'], rent[1], solution2_found['CR2'], rent[2], solution2_found['CR3'], rent[3], solution2_found['CR4'], rent[4], solution2_found['CR5']))
+
+
+
+  df_results = pd.DataFrame(index=['CR1', 'CR2', 'CR3', 'CR4', 'CR5'])
+  df_results['Rental for Per Day'] = [solution_found['CR1'],
+                                  solution_found['CR2'],
+                                  solution_found['CR3'],
+                                  solution_found['CR4'],
+                                  solution_found['CR5']]
+  
+  st.dataframe(df_results)
+
+  df_results_last = pd.DataFrame(index=['CR1', 'CR2', 'CR3', 'CR4', 'CR5'])
+  df_results_last['Rental for Last Day'] = [solution2_found['CR1'],
+                                                solution2_found['CR2'],
+                                                solution2_found['CR3'],
+                                                solution2_found['CR4'],
+                                                solution2_found['CR5']]
+
+  st.dataframe(df_results_last)
 
   #Total cost for per day(Not include last day)
   total = solution_found['CR1']*rent[0] + solution_found['CR2']*rent[1] + solution_found['CR3']*rent[2] + solution_found['CR4']*rent[3] + solution_found['CR5']*rent[4]
-  st.write("Total cost for per day day(Not include last day): RM",total)
+  st.markdown("Total cost for per day day(Not include last day): RM",total)
 
   #Total cost for last day
   Total = solution2_found['CR1']*rent[0] + solution2_found['CR2']*rent[1] + solution2_found['CR3']*rent[2] + solution2_found['CR4']*rent[3] + solution2_found['CR5']*rent[4]
-  st.write("\nTotal cost for last day: RM",Total)
-
+  st.markdown("\nTotal cost for last day: RM",Total)
 
   #Total cost 
   TTL = ((m.ceil(Total_Day)-1)*total) + Total
-  st.write("Total Cost: RM:",TTL)
+  st.markdown("Total Cost: RM:",TTL)
 
 
 # ----- QUESTION 3 -----
@@ -454,16 +474,18 @@ def get_XY(data):
 
 
 if(question=="Question 1"):
-    st.write()
+    st.markdown()
 elif(question=="Question 2"):
     state = st.sidebar.selectbox("Select state", ("State 1", "State 2", "State 3", "State 4", "State 5"))
 
-    st.header('Cheapest Way to Distribute Vaccine at', state)
+    
 
     max_cap_cr = [200,500,1000,2500,4000]
     rent = [100,250,500,800,1200]
 
     if(state=="State 1"):
+        st.header('Cheapest Way to Distribute Vaccine at State 1')
+
         #Maximum capacity per day at State 1
         maximum_Capacity_for_Per_Day_1 = 5000
 
@@ -477,6 +499,8 @@ elif(question=="Question 2"):
         vaccine_csp(maximum_Capacity_for_Per_Day_1, x, y, z, num_cr_1, max_cap_cr, rent)
 
     elif(state=="State 2"):
+        st.header('Cheapest Way to Distribute Vaccine at State 2')
+
         #Maximum capacity per day at State 2
         maximum_Capacity_for_Per_Day_2 = 10000
 
@@ -490,6 +514,8 @@ elif(question=="Question 2"):
         vaccine_csp(maximum_Capacity_for_Per_Day_2, x, y, z, num_cr_2, max_cap_cr, rent)
 
     elif(state=="State 3"):
+        st.header('Cheapest Way to Distribute Vaccine at State 3')
+
         #Maximum capacity per day at State 3
         maximum_Capacity_for_Per_Day_3 = 7500
 
@@ -503,6 +529,8 @@ elif(question=="Question 2"):
         vaccine_csp(maximum_Capacity_for_Per_Day_3, x, y, z, num_cr_3, max_cap_cr, rent)
 
     elif(state=="State 4"):
+        st.header('Cheapest Way to Distribute Vaccine at State 4')
+
         #Maximum capacity per day at State 4
         maximum_Capacity_for_Per_Day_4 = 8500
 
@@ -516,6 +544,8 @@ elif(question=="Question 2"):
         vaccine_csp(maximum_Capacity_for_Per_Day_4, x, y, z, num_cr_4, max_cap_cr, rent)
 
     else:
+        st.header('Cheapest Way to Distribute Vaccine at State 5')
+
         #Maximum capacity per day at State 5
         maximum_Capacity_for_Per_Day_5 = 9500
 
@@ -536,8 +566,8 @@ else:
     # Get data
     data_model = get_dataset()
 
-    st.write('No. of columns:', data_model.shape[1])
-    st.write('No. of rows:', data_model.shape[0])
+    st.markdown('No. of columns:', data_model.shape[1])
+    st.markdown('No. of rows:', data_model.shape[0])
     
     # Display descriptive statistics of loan amount column
     ds_data = pd.DataFrame({'Descriptive statistics of loan amount': data_model['Loan_Amount'].describe()})
@@ -561,7 +591,7 @@ else:
     # Naive Bayes model
 
     st.header("Naive Bayes")
-    st.sidebar.write("Naive Bayes")
+    st.sidebar.markdown("* Naive Bayes")
     
     # NB parameters
     var_smoothing = st.sidebar.slider("var_smoothing", 1e-9, 0.1)
@@ -579,16 +609,16 @@ else:
     # Evaluate NB model
     nb_acc = accuracy_score(y_test, nb_y_pred)*100
 
-    st.write('Parameters:')
-    st.write('var_smoothing', params['var_smoothing'])
+    st.subheader('Parameters:')
+    st.markdown('var_smoothing', params['var_smoothing'])
 
-    st.write('Accuracy:', nb_acc)
+    st.markdown('Accuracy:', nb_acc)
 
 
     # Decision Tree model
 
     st.header('Decision Tree')
-    st.sidebar.write("Decision Tree")
+    st.sidebar.markdown("* Decision Tree")
 
     # DTC parameters
     criterion = st.sidebar.selectbox("Select criterion", ('entropy', 'gini'))
@@ -610,12 +640,12 @@ else:
     # Evaluate DTC model
     dtc_acc = accuracy_score(y_test, dtc_y_pred)*100
 
-    st.write('Parameters:')
-    st.write('criterion', params['criterion'])
-    st.write('splitter', params['splitter'])
-    st.write('max_depth', params['max_depth'])
+    st.subheader('Parameters:')
+    st.markdown('criterion', criterion)
+    st.markdown('splitter', splitter)
+    st.markdown('max_depth', params['max_depth'])
 
-    st.write('Accuracy:', dtc_acc)
+    st.markdown('Accuracy:', dtc_acc)
 
     # Visualize decision tree
     fn=X.columns
@@ -644,7 +674,7 @@ else:
     
     # K-Means Cluster
 
-    st.sidebar.write("K-Means Cluster")
+    st.sidebar.markdown("* K-Means Cluster")
     
     st.header('K-Means Cluster')
 
@@ -665,23 +695,23 @@ else:
     # Combine the dummy dataframe with X
     X_encoded_cluster = pd.concat([cl_num_df, cl_dummy_df], axis=1, join='inner')
 
-    # Finding the best k value using the elbow method
-    st.write('Finding the best k-value using the elbow method')
+    # # Finding the best k value using the elbow method
+    # st.markdown('Finding the best k-value using the elbow method')
 
-    distortions = []
-    for i in range(2,11):
-        km = KMeans(n_clusters=i, random_state=0)
-        km.fit(X_encoded_cluster)
-        distortions.append(km.inertia_)
+    # distortions = []
+    # for i in range(2,11):
+    #     km = KMeans(n_clusters=i, random_state=0)
+    #     km.fit(X_encoded_cluster)
+    #     distortions.append(km.inertia_)
 
-    # Plot
-    plt.plot(range(2,11), distortions, marker='o')
-    plt.xlabel('Number of clusters')
-    plt.ylabel('Distortion')
-    st.set_option('deprecation.showPyplotGlobalUse', False)
-    st.pyplot() 
+    # # Plot
+    # plt.plot(range(2,11), distortions, marker='o')
+    # plt.xlabel('Number of clusters')
+    # plt.ylabel('Distortion')
+    # st.set_option('deprecation.showPyplotGlobalUse', False)
+    # st.pyplot() 
 
-    st.write('The optimal k-value is 5.')
+    # st.markdown('The optimal k-value is 5.')
 
     # KMeans cluster parameters
     n_clusters = st.sidebar.slider("n_clusters", 2, 11)
@@ -699,7 +729,7 @@ else:
 
     # Silhouette score
     sil_score = silhouette_score(X_encoded_cluster, km_baseline.labels_)
-    st.write('Silhouette score (n =)', params["n_clusters"], ':', sil_score)
+    st.markdown('Silhouette score (n =)', params["n_clusters"], ':', sil_score)
 
     # Plot silhouette visualizer
     sil_fig = silhouette_visualizer(km_model, X_encoded_cluster, colors='yellowbrick')
