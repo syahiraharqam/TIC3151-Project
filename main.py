@@ -562,10 +562,6 @@ else:
     ds_data = pd.DataFrame({'Descriptive statistics of loan amount': data_model['Loan_Amount'].describe()})
     st.dataframe(ds_data)
 
-    fig_bp, axes_bp = plt.subplots(nrows=1, ncols=1, figsize=(4,4), dpi=3000)
-    data_model.boxplot(by ='Employment_Type', column =['Score'], grid = False)
-    st.pyplot(fig_bp)
-
     # Data preprocessing
 
     # Get X and y data
@@ -695,7 +691,7 @@ else:
         distortions.append(km.inertia_)
 
     # Plot
-    fig_elbow, axes_elbow = plt.subplots(nrows=1, ncols=1, figsize=(4,4), dpi=3000)
+    fig_elbow, axes_elbow = plt.subplots(nrows=1, ncols=1, figsize=(2,2), dpi=400)
     plt.plot(range(2,11), distortions, marker='o')
     plt.xlabel('Number of clusters')
     plt.ylabel('Distortion')
@@ -727,8 +723,11 @@ else:
     # st.pyplot(fig_sil)
 
     # Plot scatter
-    fig_scatter, axes_scatter = plt.subplots(nrows=1, ncols=1, figsize=(4,4), dpi=3000)
+    fig_scatter, axes_scatter = plt.subplots(nrows=1, ncols=1, figsize=(2,2), dpi=400)
     sns.scatterplot(x='Loan_Amount', y='Total_Sum_of_Loan', hue='Cluster', data=df_clusters)
+    plt.legend(bbox_to_anchor=(1.01, 1),
+           borderaxespad=0)
+    plt.tight_layout()
     st.set_option('deprecation.showPyplotGlobalUse', False)
     st.pyplot(fig_scatter) 
 
