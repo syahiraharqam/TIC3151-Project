@@ -592,7 +592,7 @@ else:
     # Naive Bayes model
 
     st.header("Naive Bayes")
-    st.sidebar.markdown("* Naive Bayes")
+    st.sidebar.markdown("** Naive Bayes **")
     
     # NB parameters
     var_smoothing = st.sidebar.slider("var_smoothing", 1e-9, 0.1)
@@ -619,7 +619,7 @@ else:
     # Decision Tree model
 
     st.header('Decision Tree')
-    st.sidebar.markdown("* Decision Tree")
+    st.sidebar.markdown("** Decision Tree **")
 
     # DTC parameters
     criterion = st.sidebar.selectbox("Select criterion", ('entropy', 'gini'))
@@ -675,7 +675,7 @@ else:
     
     # K-Means Cluster
 
-    st.sidebar.markdown("* K-Means Cluster")
+    st.sidebar.markdown("** K-Means Cluster **")
     
     st.header('K-Means Cluster')
 
@@ -729,7 +729,7 @@ else:
     df_clusters['Cluster'] = km_model.labels_
 
     # Silhouette score
-    sil_score = silhouette_score(X_encoded_cluster, km_baseline.labels_)
+    sil_score = silhouette_score(X_encoded_cluster, km_model.labels_)
     st.write('Silhouette score (n =)', params["n_clusters"], ':', sil_score)
 
     # Plot silhouette visualizer
