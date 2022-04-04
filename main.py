@@ -529,183 +529,184 @@ elif(question=="Question 2"):
     
 else:
     # Description of dataset
+    st.write()
 
-    st.header('Description of Bank Credit Scoring dataset')
+    # st.header('Description of Bank Credit Scoring dataset')
 
-    # Get data
-    data_model = get_dataset()
+    # # Get data
+    # data_model = get_dataset()
 
-    st.write('No. of columns:', data_model.shape[1])
-    st.write('No. of rows:', data_model.shape[0])
+    # st.write('No. of columns:', data_model.shape[1])
+    # st.write('No. of rows:', data_model.shape[0])
     
-    # Display descriptive statistics of loan amount column
-    ds_data = pd.DataFrame({'Descriptive statistics of loan amount': data_model['Loan_Amount'].describe()})
-    st.dataframe(ds_data)
+    # # Display descriptive statistics of loan amount column
+    # ds_data = pd.DataFrame({'Descriptive statistics of loan amount': data_model['Loan_Amount'].describe()})
+    # st.dataframe(ds_data)
 
-    data_model.boxplot(by ='Employment_Type', column =['Score'], grid = False)
-    # st.pyplot(bp_fig)
+    # data_model.boxplot(by ='Employment_Type', column =['Score'], grid = False)
+    # # st.pyplot(bp_fig)
 
-    # Data preprocessing
+    # # Data preprocessing
 
-    # Get X and y data
-    X, y = get_XY(data_model)
+    # # Get X and y data
+    # X, y = get_XY(data_model)
 
-    # Split into train and test sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=5)
+    # # Split into train and test sets
+    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=5)
 
-    # Initialize parameter dictionary
-    params = dict()
+    # # Initialize parameter dictionary
+    # params = dict()
 
 
-    # Naive Bayes model
+    # # Naive Bayes model
 
-    st.header("Naive Bayes")
-    st.sidebar.write("Naive Bayes")
+    # st.header("Naive Bayes")
+    # st.sidebar.write("Naive Bayes")
     
-    # NB parameters
-    var_smoothing = st.sidebar.slider("var_smoothing", 1e-9, 0.1)
-    params["var_smoothing"] = var_smoothing
+    # # NB parameters
+    # var_smoothing = st.sidebar.slider("var_smoothing", 1e-9, 0.1)
+    # params["var_smoothing"] = var_smoothing
 
-    # Build NB model
-    nb_model = GaussianNB(var_smoothing=params["var_smoothing"])
+    # # Build NB model
+    # nb_model = GaussianNB(var_smoothing=params["var_smoothing"])
 
-    # Train NB model
-    nb_model.fit(X_train, y_train)
+    # # Train NB model
+    # nb_model.fit(X_train, y_train)
 
-    # Predict using NB model
-    nb_y_pred = nb_model.predict(X_test)
+    # # Predict using NB model
+    # nb_y_pred = nb_model.predict(X_test)
 
-    # Evaluate NB model
-    nb_acc = accuracy_score(y_test, nb_y_pred)*100
+    # # Evaluate NB model
+    # nb_acc = accuracy_score(y_test, nb_y_pred)*100
 
-    st.write('Parameters:')
-    st.write('var_smoothing', params['var_smoothing'])
+    # st.write('Parameters:')
+    # st.write('var_smoothing', params['var_smoothing'])
 
-    st.write('Accuracy:', nb_acc)
+    # st.write('Accuracy:', nb_acc)
 
 
-    # Decision Tree model
+    # # Decision Tree model
 
-    st.header('Decision Tree')
-    st.sidebar.write("Decision Tree")
+    # st.header('Decision Tree')
+    # st.sidebar.write("Decision Tree")
 
-    # DTC parameters
-    criterion = st.sidebar.selectbox("Select criterion", ('entropy', 'gini'))
-    splitter = st.sidebar.selectbox("Select splitter", ('best', 'random'))
-    max_depth = st.sidebar.slider("max_depth", 1, 10)
-    params["criterion"] = criterion
-    params["splitter"] = splitter
-    params["max_depth"] = max_depth
+    # # DTC parameters
+    # criterion = st.sidebar.selectbox("Select criterion", ('entropy', 'gini'))
+    # splitter = st.sidebar.selectbox("Select splitter", ('best', 'random'))
+    # max_depth = st.sidebar.slider("max_depth", 1, 10)
+    # params["criterion"] = criterion
+    # params["splitter"] = splitter
+    # params["max_depth"] = max_depth
 
-    # Build DTC model
-    dtc_model = DecisionTreeClassifier(criterion=params["criterion"], splitter=params["splitter"], max_depth=params["max_depth"], random_state=0)
+    # # Build DTC model
+    # dtc_model = DecisionTreeClassifier(criterion=params["criterion"], splitter=params["splitter"], max_depth=params["max_depth"], random_state=0)
     
-    # Train DTC model
-    dtc_model.fit(X_train, y_train)
+    # # Train DTC model
+    # dtc_model.fit(X_train, y_train)
 
-    # Predict using DTC model
-    dtc_y_pred = dtc_model.predict(X_test)
+    # # Predict using DTC model
+    # dtc_y_pred = dtc_model.predict(X_test)
 
-    # Evaluate DTC model
-    dtc_acc = accuracy_score(y_test, dtc_y_pred)*100
+    # # Evaluate DTC model
+    # dtc_acc = accuracy_score(y_test, dtc_y_pred)*100
 
-    st.write('Parameters:')
-    st.write('criterion', params['criterion'])
-    st.write('splitter', params['splitter'])
-    st.write('max_depth', params['max_depth'])
+    # st.write('Parameters:')
+    # st.write('criterion', params['criterion'])
+    # st.write('splitter', params['splitter'])
+    # st.write('max_depth', params['max_depth'])
 
-    st.write('Accuracy:', dtc_acc)
+    # st.write('Accuracy:', dtc_acc)
 
-    # Visualize decision tree
-    fn=X.columns
-    cn=['Accept', 'Reject']
-    fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(4,4), dpi=3000)
-    tree.plot_tree(dtc_model,
-                feature_names=fn,
-                class_names=cn,
-                filled=True)
+    # # Visualize decision tree
+    # fn=X.columns
+    # cn=['Accept', 'Reject']
+    # fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(4,4), dpi=3000)
+    # tree.plot_tree(dtc_model,
+    #             feature_names=fn,
+    #             class_names=cn,
+    #             filled=True)
 
-    st.pyplot(fig)
+    # st.pyplot(fig)
 
 
-    # Model performance comparison
+    # # Model performance comparison
 
-    st.header('Accuracy Comparison between Naive Bayes and Decision Tree')
+    # st.header('Accuracy Comparison between Naive Bayes and Decision Tree')
 
-    # Plot barcharts comparing accuracies of the models
-    df_results = pd.DataFrame({
-        'Model': ['Naive Bayes', 'Decision Tree'],
-        'Accuracy': [nb_acc, dtc_acc]
-    })
-    df_bar_results = px.bar(df_results, x="Model", y="Accuracy")
-    st.plotly_chart(df_bar_results)
+    # # Plot barcharts comparing accuracies of the models
+    # df_results = pd.DataFrame({
+    #     'Model': ['Naive Bayes', 'Decision Tree'],
+    #     'Accuracy': [nb_acc, dtc_acc]
+    # })
+    # df_bar_results = px.bar(df_results, x="Model", y="Accuracy")
+    # st.plotly_chart(df_bar_results)
 
     
-    # K-Means Cluster
+    # # K-Means Cluster
 
-    st.sidebar.write("K-Means Cluster")
+    # st.sidebar.write("K-Means Cluster")
     
-    st.header('K-Means Cluster')
+    # st.header('K-Means Cluster')
 
-    data = get_dataset()
+    # data = get_dataset()
     
-    # Get categorical columns
-    cl_cat_cols = []
-    for col in data:
-        if (data.dtypes[col] == 'object'):
-            cl_cat_cols.append(col)
+    # # Get categorical columns
+    # cl_cat_cols = []
+    # for col in data:
+    #     if (data.dtypes[col] == 'object'):
+    #         cl_cat_cols.append(col)
 
-    # Drop categorical columns in X
-    cl_num_df = data.drop(cl_cat_cols, axis=1)
+    # # Drop categorical columns in X
+    # cl_num_df = data.drop(cl_cat_cols, axis=1)
 
-    # Get dummy variable from categorical columns
-    cl_dummy_df = pd.get_dummies(data[cl_cat_cols])
+    # # Get dummy variable from categorical columns
+    # cl_dummy_df = pd.get_dummies(data[cl_cat_cols])
 
-    # Combine the dummy dataframe with X
-    X_encoded_cluster = pd.concat([cl_num_df, cl_dummy_df], axis=1, join='inner')
+    # # Combine the dummy dataframe with X
+    # X_encoded_cluster = pd.concat([cl_num_df, cl_dummy_df], axis=1, join='inner')
 
-    # Finding the best k value using the elbow method
-    st.write('Finding the best k-value using the elbow method')
+    # # Finding the best k value using the elbow method
+    # st.write('Finding the best k-value using the elbow method')
 
-    distortions = []
-    for i in range(2,11):
-        km = KMeans(n_clusters=i, random_state=0)
-        km.fit(X_encoded_cluster)
-        distortions.append(km.inertia_)
+    # distortions = []
+    # for i in range(2,11):
+    #     km = KMeans(n_clusters=i, random_state=0)
+    #     km.fit(X_encoded_cluster)
+    #     distortions.append(km.inertia_)
 
-    # Plot
-    plt.plot(range(2,11), distortions, marker='o')
-    plt.xlabel('Number of clusters')
-    plt.ylabel('Distortion')
-    st.set_option('deprecation.showPyplotGlobalUse', False)
-    st.pyplot() 
+    # # Plot
+    # plt.plot(range(2,11), distortions, marker='o')
+    # plt.xlabel('Number of clusters')
+    # plt.ylabel('Distortion')
+    # st.set_option('deprecation.showPyplotGlobalUse', False)
+    # st.pyplot() 
 
-    st.write('The optimal k-value is 5.')
+    # st.write('The optimal k-value is 5.')
 
-    # KMeans cluster parameters
-    n_clusters = st.sidebar.slider("n_clusters", 2, 11)
-    params["n_clusters"] = n_clusters
+    # # KMeans cluster parameters
+    # n_clusters = st.sidebar.slider("n_clusters", 2, 11)
+    # params["n_clusters"] = n_clusters
 
-    # Build KMeans cluster
-    km_model = KMeans(n_clusters=params["n_clusters"], random_state=0)
+    # # Build KMeans cluster
+    # km_model = KMeans(n_clusters=params["n_clusters"], random_state=0)
 
-    # Train KMeans cluster 
-    km_model.fit(X_encoded_cluster.values)
+    # # Train KMeans cluster 
+    # km_model.fit(X_encoded_cluster.values)
 
-    # Append clusters to dataframe
-    df_clusters = data.copy()
-    df_clusters['Cluster'] = km_model.labels_
+    # # Append clusters to dataframe
+    # df_clusters = data.copy()
+    # df_clusters['Cluster'] = km_model.labels_
 
-    # Silhouette score
-    sil_score = silhouette_score(X_encoded_cluster, km_baseline.labels_)
-    st.write('Silhouette score (n =)', params["n_clusters"], ':', sil_score)
+    # # Silhouette score
+    # sil_score = silhouette_score(X_encoded_cluster, km_baseline.labels_)
+    # st.write('Silhouette score (n =)', params["n_clusters"], ':', sil_score)
 
-    # Plot silhouette visualizer
-    sil_fig = silhouette_visualizer(km_model, X_encoded_cluster, colors='yellowbrick')
-    st.pyplot(sil_fig)
+    # # Plot silhouette visualizer
+    # sil_fig = silhouette_visualizer(km_model, X_encoded_cluster, colors='yellowbrick')
+    # st.pyplot(sil_fig)
 
-    # Plot scatter
-    sns.scatterplot(x='Loan_Amount', y='Total_Sum_of_Loan', hue='Cluster', data=df_clusters)
-    st.set_option('deprecation.showPyplotGlobalUse', False)
-    st.pyplot() 
+    # # Plot scatter
+    # sns.scatterplot(x='Loan_Amount', y='Total_Sum_of_Loan', hue='Cluster', data=df_clusters)
+    # st.set_option('deprecation.showPyplotGlobalUse', False)
+    # st.pyplot() 
 
