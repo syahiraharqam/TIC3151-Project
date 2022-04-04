@@ -592,7 +592,7 @@ else:
     # Naive Bayes model
 
     st.header("Naive Bayes")
-    st.sidebar.markdown("** Naive Bayes **")
+    st.sidebar.markdown("Naive Bayes")
     
     # NB parameters
     var_smoothing = st.sidebar.slider("var_smoothing", 1e-9, 0.1)
@@ -619,7 +619,7 @@ else:
     # Decision Tree model
 
     st.header('Decision Tree')
-    st.sidebar.markdown("** Decision Tree **")
+    st.sidebar.markdown("Decision Tree")
 
     # DTC parameters
     criterion = st.sidebar.selectbox("Select criterion", ('entropy', 'gini'))
@@ -675,7 +675,7 @@ else:
     
     # K-Means Cluster
 
-    st.sidebar.markdown("** K-Means Cluster **")
+    st.sidebar.markdown("K-Means Cluster")
     
     st.header('K-Means Cluster')
 
@@ -733,8 +733,9 @@ else:
     st.write('Silhouette score (n =)', params["n_clusters"], ':', sil_score)
 
     # Plot silhouette visualizer
-    sil_fig = silhouette_visualizer(km_model, X_encoded_cluster, colors='yellowbrick')
-    st.pyplot(sil_fig)
+    silhouette_visualizer(km_model, X_encoded_cluster, colors='yellowbrick')
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+    st.pyplot()
 
     # Plot scatter
     sns.scatterplot(x='Loan_Amount', y='Total_Sum_of_Loan', hue='Cluster', data=df_clusters)
