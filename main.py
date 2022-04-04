@@ -28,6 +28,7 @@ st.title("TIC3151 Project")
 question = st.sidebar.selectbox("Select question", ("Question 1", "Question 2", "Question 3"))
 
 # ----- QUESTION 1 -----
+# test
 
 # ----- QUESTION 2 -----
 
