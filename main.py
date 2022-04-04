@@ -621,7 +621,7 @@ if(question=="Question 1"):
     if(method=="Method 1"):
         st.header("Vacation Planning using Genetic Algorithm (Method 1)")
         st.subheader("RM5000 Budget for 5 days with 6 tourist spots, 10 trips per day, and 3 meals per day")
-
+        st.write('Selection = 0.5, Crossover = [:half|half:], Mutation = 0.1')
         value_lst_h1, fitness_history_h1 = ga(1, 4, 100, 250)
         best_h1 = min_fitness_idx(value_lst_h1, fitness_history_h1)
 
@@ -645,6 +645,7 @@ if(question=="Question 1"):
     elif(method=="Method 2"):
         st.header("Vacation Planning using Genetic Algorithm (Method 2)")
         st.subheader("RM5000 Budget for 5 days with 6 tourist spots, 10 trips per day, and 3 meals per day")
+        st.write('Selection = 0.6, Crossover = [:3|3:], Mutation = 0.2')
         value_lst_h2, fitness_history_h2 = ga(2, 4, 100, 250)
         best_h2 = min_fitness_idx(value_lst_h2, fitness_history_h2)
 
@@ -668,6 +669,7 @@ if(question=="Question 1"):
     else:
         st.header("Vacation Planning using Genetic Algorithm (Method 3)")
         st.subheader("RM5000 Budget for 5 days with 6 tourist spots, 10 trips per day, and 3 meals per day")
+        st.write('Selection = 0.7, Crossover = [:4|4:], Mutation = 0.3')
         value_lst_h3, fitness_history_h3 = ga(3, 4, 100, 250)
         best_h3 = min_fitness_idx(value_lst_h3, fitness_history_h3)
 
