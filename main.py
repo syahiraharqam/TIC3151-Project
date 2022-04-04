@@ -1,6 +1,5 @@
 # Import libraries
 import streamlit as st
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -18,7 +17,6 @@ from yellowbrick.cluster import silhouette_visualizer
 import plotly.express as px
 
 import constraint
-import numpy as np
 import math as m
 
 from random import randint
