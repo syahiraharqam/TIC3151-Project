@@ -17,7 +17,6 @@ from sklearn.metrics import silhouette_score
 from yellowbrick.cluster import silhouette_visualizer
 import plotly.express as px
 
-import pytholog as pl
 import constraint
 import numpy as np
 import math as m
