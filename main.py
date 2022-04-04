@@ -738,7 +738,8 @@ else:
     st.pyplot(fig_sil)
 
     # Plot scatter
+    fig_scatter, axes_scatter = plt.subplots(nrows=1, ncols=1, figsize=(4,4), dpi=3000)
     sns.scatterplot(x='Loan_Amount', y='Total_Sum_of_Loan', hue='Cluster', data=df_clusters)
     st.set_option('deprecation.showPyplotGlobalUse', False)
-    st.pyplot() 
+    st.pyplot(fig_scatter) 
 
