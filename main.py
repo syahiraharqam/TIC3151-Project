@@ -290,7 +290,7 @@ def vaccine_csp(maximum_Capacity_for_Per_Day, x, y, z, num_cr, max_cap_cr, rent)
   Total = int(x)+int(y)+int(z)
 
   # Display the value that calculated at the top
-  st.markdown('### Days that each age need to took for finish the vaccination')
+  st.markdown('### Days taken for each age group to finish the vaccination distribution')
   st.write('\nAge above 60          (Vac-A):',m.ceil(Needed_day_for_Age_above_60),'days')
 
   # Send The variable to function Day_of_Vaccine_Distribution_A to find how many days did Vaccine A been finish distributed
@@ -360,15 +360,6 @@ def vaccine_csp(maximum_Capacity_for_Per_Day, x, y, z, num_cr, max_cap_cr, rent)
           minimum_Cost_Per_Day = Rental_Per_Day
           solution_found = s
 
-#   st.write("""  
-#   Rental for Per Day Day at each Vaccine Centre
-#   CR 1 (RM{}  per day) {}
-#   CR 2 (RM{}  per day) {}
-#   CR 3 (RM{}  per day) {}
-#   CR 4 (RM{}  per day) {}
-#   CR 5 (RM{} per day) {}
-#   """.format(rent[0], solution_found['CR1'], rent[1], solution_found['CR2'], rent[2], solution_found['CR3'], rent[3], solution_found['CR4'], rent[4], solution_found['CR5']))
-
   # Find out the Amount of population for vaccination in last day
   LastDay = Total-(int(Total/maximum_Capacity_for_Per_Day)*maximum_Capacity_for_Per_Day)
   Lastday = (LastDay/100)
@@ -398,17 +389,6 @@ def vaccine_csp(maximum_Capacity_for_Per_Day, x, y, z, num_cr, max_cap_cr, rent)
       if Rental_Per_Day < minimum_Cost_Per_Day2:
           minimum_Cost_Per_Day2 = Rental_Per_Day
           solution2_found = s
-
-
-#   st.write(""" 
-#   Rental for Last Day at each Vaccine Centre 
-#   CR 1 (RM{}  per day) {}
-#   CR 2 (RM{}  per day) {}
-#   CR 3 (RM{}  per day) {}
-#   CR 4 (RM{}  per day) {}
-#   CR 5 (RM{} per day) {}
-#   """.format(rent[0], solution2_found['CR1'], rent[1], solution2_found['CR2'], rent[2], solution2_found['CR3'], rent[3], solution2_found['CR4'], rent[4], solution2_found['CR5']))
-
 
 
   df_results = pd.DataFrame(index=['CR1', 'CR2', 'CR3', 'CR4', 'CR5'])
@@ -475,20 +455,28 @@ def get_XY(data):
 
 
 if(question=="Question 1"):
-    st.write('')
+
+    method = st.sidebar.selectbox("Select method", ("Method 1", "Method 2", "Method 3"))
+
+    if(method=="Method 1"):
+        st.header("Vacation Planning using Genetic Algorithm (Method 1)")
+    elif(method=="Method 2"):
+        st.header("Vacation Planning using Genetic Algorithm (Method 2)")
+    else:
+        st.header("Vacation Planning using Genetic Algorithm (Method 3)")
+
 elif(question=="Question 2"):
+
     state = st.sidebar.selectbox("Select state", ("State 1", "State 2", "State 3", "State 4", "State 5"))
 
-    
-
-    max_cap_cr = [200,500,1000,2500,4000]
-    rent = [100,250,500,800,1200]
+    max_cap_cr = [200,500,1000,2500,4000] # Max capacity for each centre (CR1, CR2, CR3, CR4, CR5)
+    rent = [100,250,500,800,1200] # Rent for each centre
 
     if(state=="State 1"):
-        st.header('Cheapest Way to Distribute Vaccine at State 1')
+        st.header('Cheapest Way to Distribute Vaccine in State 1')
 
         #Maximum capacity per day at State 1
-        maximum_Capacity_for_Per_Day_1 = 5000
+        maximum_Capacity_for_Per_Day_1 = 5000 
 
         # Population at State 1
         x = 115900 # Age lower than 30
@@ -500,7 +488,7 @@ elif(question=="Question 2"):
         vaccine_csp(maximum_Capacity_for_Per_Day_1, x, y, z, num_cr_1, max_cap_cr, rent)
 
     elif(state=="State 2"):
-        st.header('Cheapest Way to Distribute Vaccine at State 2')
+        st.header('Cheapest Way to Distribute Vaccine in State 2')
 
         #Maximum capacity per day at State 2
         maximum_Capacity_for_Per_Day_2 = 10000
@@ -515,7 +503,7 @@ elif(question=="Question 2"):
         vaccine_csp(maximum_Capacity_for_Per_Day_2, x, y, z, num_cr_2, max_cap_cr, rent)
 
     elif(state=="State 3"):
-        st.header('Cheapest Way to Distribute Vaccine at State 3')
+        st.header('Cheapest Way to Distribute Vaccine in State 3')
 
         #Maximum capacity per day at State 3
         maximum_Capacity_for_Per_Day_3 = 7500
@@ -530,7 +518,7 @@ elif(question=="Question 2"):
         vaccine_csp(maximum_Capacity_for_Per_Day_3, x, y, z, num_cr_3, max_cap_cr, rent)
 
     elif(state=="State 4"):
-        st.header('Cheapest Way to Distribute Vaccine at State 4')
+        st.header('Cheapest Way to Distribute Vaccine in State 4')
 
         #Maximum capacity per day at State 4
         maximum_Capacity_for_Per_Day_4 = 8500
@@ -545,7 +533,7 @@ elif(question=="Question 2"):
         vaccine_csp(maximum_Capacity_for_Per_Day_4, x, y, z, num_cr_4, max_cap_cr, rent)
 
     else:
-        st.header('Cheapest Way to Distribute Vaccine at State 5')
+        st.header('Cheapest Way to Distribute Vaccine in State 5')
 
         #Maximum capacity per day at State 5
         maximum_Capacity_for_Per_Day_5 = 9500
@@ -574,8 +562,9 @@ else:
     ds_data = pd.DataFrame({'Descriptive statistics of loan amount': data_model['Loan_Amount'].describe()})
     st.dataframe(ds_data)
 
+    fig_bp, axes_bp = plt.subplots(nrows=1, ncols=1, figsize=(4,4), dpi=3000)
     data_model.boxplot(by ='Employment_Type', column =['Score'], grid = False)
-    # st.pyplot(bp_fig)
+    st.pyplot(fig_bp)
 
     # Data preprocessing
 
@@ -610,8 +599,9 @@ else:
     # Evaluate NB model
     nb_acc = accuracy_score(y_test, nb_y_pred)*100
 
-    st.markdown('### Parameters:')
-    st.write('var_smoothing', params['var_smoothing'])
+    nb_par = pd.DataFrame({'Parameter': ['var_smoothing']})
+    nb_par['Value'] = [params['var_smoothing']]
+    st.dataframe(nb_par)
 
     st.write('Accuracy:', nb_acc)
 
@@ -641,10 +631,9 @@ else:
     # Evaluate DTC model
     dtc_acc = accuracy_score(y_test, dtc_y_pred)*100
 
-    st.markdown('### Parameters:')
-    st.write('criterion', criterion)
-    st.write('splitter', splitter)
-    st.write('max_depth', params['max_depth'])
+    dt_par = pd.DataFrame({'Parameter': ['criterion', 'splitter', 'max_depth']})
+    dt_par['Value'] = [criterion, splitter, params['max_depth']]
+    st.dataframe(dt_par)
 
     st.write('Accuracy:', dtc_acc)
 
@@ -696,23 +685,23 @@ else:
     # Combine the dummy dataframe with X
     X_encoded_cluster = pd.concat([cl_num_df, cl_dummy_df], axis=1, join='inner')
 
-    # # Finding the best k value using the elbow method
-    # st.write('Finding the best k-value using the elbow method')
+    # Finding the best k value using the elbow method
+    st.write('Finding the best k-value using the elbow method')
 
-    # distortions = []
-    # for i in range(2,11):
-    #     km = KMeans(n_clusters=i, random_state=0)
-    #     km.fit(X_encoded_cluster)
-    #     distortions.append(km.inertia_)
+    distortions = []
+    for i in range(2,11):
+        km = KMeans(n_clusters=i, random_state=0)
+        km.fit(X_encoded_cluster)
+        distortions.append(km.inertia_)
 
-    # # Plot
-    # plt.plot(range(2,11), distortions, marker='o')
-    # plt.xlabel('Number of clusters')
-    # plt.ylabel('Distortion')
-    # st.set_option('deprecation.showPyplotGlobalUse', False)
-    # st.pyplot() 
+    # Plot
+    fig_elbow, axes_elbow = plt.subplots(nrows=1, ncols=1, figsize=(4,4), dpi=3000)
+    plt.plot(range(2,11), distortions, marker='o')
+    plt.xlabel('Number of clusters')
+    plt.ylabel('Distortion')
+    st.pyplot(fig_elbow) 
 
-    # st.write('The optimal k-value is 5.')
+    st.write('The optimal k-value is 5.')
 
     # KMeans cluster parameters
     n_clusters = st.sidebar.slider("n_clusters", 2, 11)
@@ -732,10 +721,10 @@ else:
     sil_score = silhouette_score(X_encoded_cluster, km_model.labels_)
     st.write('Silhouette score (n =', params["n_clusters"], ' ):', sil_score)
 
-    # Plot silhouette visualize
-    fig_sil, axes_sil = plt.subplots(nrows=1, ncols=1, figsize=(4,4), dpi=3000)
-    silhouette_visualizer(km_model, X_encoded_cluster, colors='yellowbrick')
-    st.pyplot(fig_sil)
+    # # Plot silhouette visualize
+    # fig_sil, axes_sil = plt.subplots(nrows=1, ncols=1, figsize=(4,4), dpi=3000)
+    # silhouette_visualizer(km_model, X_encoded_cluster, colors='yellowbrick')
+    # st.pyplot(fig_sil)
 
     # Plot scatter
     fig_scatter, axes_scatter = plt.subplots(nrows=1, ncols=1, figsize=(4,4), dpi=3000)
