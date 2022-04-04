@@ -730,7 +730,7 @@ else:
 
     # Silhouette score
     sil_score = silhouette_score(X_encoded_cluster, km_model.labels_)
-    st.write('Silhouette score (n =)', params["n_clusters"], ':', sil_score)
+    st.write('Silhouette score (n =', params["n_clusters"], ' ):', sil_score)
 
     # Plot silhouette visualizer
     silhouette_visualizer(km_model, X_encoded_cluster, colors='yellowbrick')
