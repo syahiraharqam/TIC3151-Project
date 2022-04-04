@@ -620,6 +620,7 @@ if(question=="Question 1"):
 
     if(method=="Method 1"):
         st.header("Vacation Planning using Genetic Algorithm (Method 1)")
+        st.subheader("RM5000 Budget for 5 days with 6 tourist spots, 10 trips per day, and 3 meals per day")
 
         value_lst_h1, fitness_history_h1 = ga(1, 4, 100, 250)
         best_h1 = min_fitness_idx(value_lst_h1, fitness_history_h1)
@@ -633,16 +634,17 @@ if(question=="Question 1"):
         value_lst_f1, fitness_history_f1 = ga(1, 15, 3, 100)
         best_f1 = min_fitness_idx(value_lst_f1, fitness_history_f1)
 
-        st.write('Hotel prices per night', best_h1)
-        st.write('Tourist spot prices per spot', best_t1)
-        st.write('Transport prices per trip', best_tr1)
-        st.write('Food prices per meal', best_f1)
+        st.write('Hotel prices per night (RM100-RM250)', best_h1)
+        st.write('Tourist spot prices per spot (RM10-RM300)', best_t1)
+        st.write('Transport prices per trip (RM3-RM100)', best_tr1)
+        st.write('Food prices per meal (RM3-RM20)', best_f1)
 
         total_m1 = sum(best_h1) + sum(best_t1) + sum(best_tr1) + sum(best_f1)
         st.write('Total cost:', total_m1)
 
     elif(method=="Method 2"):
         st.header("Vacation Planning using Genetic Algorithm (Method 2)")
+        st.subheader("RM5000 Budget for 5 days with 6 tourist spots, 10 trips per day, and 3 meals per day")
         value_lst_h2, fitness_history_h2 = ga(2, 4, 100, 250)
         best_h2 = min_fitness_idx(value_lst_h2, fitness_history_h2)
 
@@ -655,16 +657,17 @@ if(question=="Question 1"):
         value_lst_f2, fitness_history_f2 = ga(2, 15, 3, 100)
         best_f2 = min_fitness_idx(value_lst_f2, fitness_history_f2)
 
-        st.write('Hotel prices per night', best_h2)
-        st.write('Tourist spot prices per spot', best_t2)
-        st.write('Transport prices per trip', best_tr2)
-        st.write('Food prices per meal', best_f2)
+        st.write('Hotel prices per night (RM100-RM250)', best_h2)
+        st.write('Tourist spot prices per spot (RM10-RM300)', best_t2)
+        st.write('Transport prices per trip (RM3-RM100)', best_tr2)
+        st.write('Food prices per meal (RM3-RM20)', best_f2)
 
         total_m2 = sum(best_h2) + sum(best_t2) + sum(best_tr2) + sum(best_f2)
         st.write('Total cost:', total_m2)
 
     else:
         st.header("Vacation Planning using Genetic Algorithm (Method 3)")
+        st.subheader("RM5000 Budget for 5 days with 6 tourist spots, 10 trips per day, and 3 meals per day")
         value_lst_h3, fitness_history_h3 = ga(3, 4, 100, 250)
         best_h3 = min_fitness_idx(value_lst_h3, fitness_history_h3)
 
@@ -677,10 +680,10 @@ if(question=="Question 1"):
         value_lst_f3, fitness_history_f3 = ga(3, 15, 3, 100)
         best_f3 = min_fitness_idx(value_lst_f3, fitness_history_f3)
 
-        st.write('Hotel prices per night', best_h3)
-        st.write('Tourist spot prices per spot', best_t3)
-        st.write('Transport prices per trip', best_tr3)
-        st.write('Food prices per meal', best_f3)
+        st.write('Hotel prices per night (RM100-RM250)', best_h3)
+        st.write('Tourist spot prices per spot (RM10-RM300)', best_t3)
+        st.write('Transport prices per trip (RM3-RM100)', best_tr3)
+        st.write('Food prices per meal (RM3-RM20)', best_f3)
 
         total_m3 = sum(best_h3) + sum(best_t3) + sum(best_tr3) + sum(best_f3)
         st.write('Total cost:', total_m3)
