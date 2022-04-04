@@ -28,7 +28,167 @@ st.title("TIC3151 Project")
 question = st.sidebar.selectbox("Select question", ("Question 1", "Question 2", "Question 3"))
 
 # ----- QUESTION 1 -----
-# test
+
+def individual(length, min, max):
+    return [randint(min,max) for x in range(length)]
+
+def population(count, length, min, max):
+    return [individual(length, min, max) for x in range(count)]
+
+def fitness(individual, target):
+    total = sum(individual)
+    return abs(target-total)
+
+def grade(pop, target): 
+    summed = [sum(i)-target for i in pop] #sum(i) in loop -> 57+31+44+22+... , target also in loop 200*3 
+    return (sum(summed)/len(pop))
+
+def evolve_m1(pop, target, retain=0.2, random_select=0.5, mutate=0.1):
+    graded = [(fitness(x,target),x) for x in pop]
+    graded = [x[1] for x in sorted(graded)] #x[1] because x has tewo components, just take the list -> e.g. [(50,[41,38,86,30,55])]
+    retain_length = int(len(graded)*retain) #how many top%parents to be remained.
+    parents = graded[0:retain_length] #get the list of array of individuals as parents - after sorted
+    
+    #randomly add other individuals to promote genetic diversity
+    for individual in graded[retain_length:]: #get from the remaining individuals NOT selected as parents initially!
+        if random_select > random.random():
+            parents.append(individual)
+    
+    #mutate some individuals
+    for individual in parents:
+        if mutate > random.random():
+            pos_to_mutate = randint(0,len(individual)-1)
+            #this mutation is not ideal, because it restricts the range of possible values, but the function is unaware of the min/max values used.... 
+            #....to create the individuals 
+            individual[pos_to_mutate] = randint(min(individual), max(individual))
+            
+    #crossover parents to create children
+    parents_length = len(parents)
+    desired_length = len(pop) - parents_length #assuming that you need to make sure you have enough individuals
+    children = []
+    while len(children) < desired_length:
+        male = randint(0,parents_length-1)
+        female = randint(0,parents_length-1)
+        if male != female:
+            male = parents[male]
+            female = parents[female]
+            half = int(len(male)/2)
+            child = male[:half]+female[half:]
+            children.append(child)
+            
+    parents.extend(children)
+    return parents
+
+def evolve_m2(pop, target, retain=0.2, random_select=0.6, mutate=0.2):
+    graded = [(fitness(x,target),x) for x in pop]
+    graded = [x[1] for x in sorted(graded)] #x[1] because x has tewo components, just take the list -> e.g. [(50,[41,38,86,30,55])]
+    retain_length = int(len(graded)*retain) #how many top%parents to be remained.
+    parents = graded[0:retain_length] #get the list of array of individuals as parents - after sorted
+    
+    #randomly add other individuals to promote genetic diversity
+    for individual in graded[retain_length:]: #get from the remaining individuals NOT selected as parents initially!
+        if random_select > random.random():
+            parents.append(individual)
+    
+    #mutate some individuals
+    for individual in parents:
+        if mutate > random.random():
+            pos_to_mutate = randint(0,len(individual)-1)
+            #this mutation is not ideal, because it restricts the range of possible values, but the function is unaware of the min/max values used.... 
+            #....to create the individuals 
+            individual[pos_to_mutate] = randint(min(individual), max(individual))
+            
+    #crossover parents to create children
+    parents_length = len(parents)
+    desired_length = len(pop) - parents_length #assuming that you need to make sure you have enough individuals
+    children = []
+    while len(children) < desired_length:
+        male = randint(0,parents_length-1)
+        female = randint(0,parents_length-1)
+        if male != female:
+            male = parents[male]
+            female = parents[female]
+            half = int(len(male)/2)
+            child = male[:3]+female[1:]
+            children.append(child)
+            
+    parents.extend(children)
+    return parents
+
+def evolve_m3(pop, target, retain=0.2, random_select=0.7, mutate=0.3):
+    graded = [(fitness(x,target),x) for x in pop]
+    graded = [x[1] for x in sorted(graded)] #x[1] because x has tewo components, just take the list -> e.g. [(50,[41,38,86,30,55])]
+    retain_length = int(len(graded)*retain) #how many top%parents to be remained.
+    parents = graded[0:retain_length] #get the list of array of individuals as parents - after sorted
+    
+    #randomly add other individuals to promote genetic diversity
+    for individual in graded[retain_length:]: #get from the remaining individuals NOT selected as parents initially!
+        if random_select > random.random():
+            parents.append(individual)
+    
+    #mutate some individuals
+    for individual in parents:
+        if mutate > random.random():
+            pos_to_mutate = randint(0,len(individual)-1)
+            #this mutation is not ideal, because it restricts the range of possible values, but the function is unaware of the min/max values used.... 
+            #....to create the individuals 
+            individual[pos_to_mutate] = randint(min(individual), max(individual))
+            
+    #crossover parents to create children
+    parents_length = len(parents)
+    desired_length = len(pop) - parents_length #assuming that you need to make sure you have enough individuals
+    children = []
+    while len(children) < desired_length:
+        male = randint(0,parents_length-1)
+        female = randint(0,parents_length-1)
+        if male != female:
+            male = parents[male]
+            female = parents[female]
+            half = int(len(male)/2)
+            child = male[:4]+female[4:]
+            children.append(child)
+            
+    parents.extend(children)
+    return parents
+
+def ga(method, i_length, i_min, i_max):
+  value_lst =[]
+  fitness_history = []
+
+  target = 1250  
+  p_count = 100 
+  n_generation = 1000
+
+  p = population(p_count, i_length, i_min, i_max)
+
+  for i in range(n_generation):
+      if(method==1):
+        p = evolve_m1(p,target)
+      elif(method==2):
+        p = evolve_m2(p,target)
+      else:
+        p = evolve_m3(p,target)
+      value = grade(p,target)
+      fitness_history.append(value)
+      value_lst.append(p[0])
+      value_lst.append(value)
+  
+  return value_lst, fitness_history
+
+def min_fitness_idx(value_lst, fitness_history):
+  min_fitness_idx = fitness_history.index(min(fitness_history))
+  min_fitness_idv = value_lst[min_fitness_idx*2]
+  return min_fitness_idv
+
+def fitness_graph(fitness_history, parameter):
+  generations = [*range(1000)]
+  fig_fit, axes_fit = plt.subplots(nrows=1, ncols=1)
+  plt.plot(generations, fitness_history)
+  plt.title('Fitness Values over Generations ' + parameter)
+  plt.xlabel('Generations')
+  plt.ylabel('Fitness Values')
+  st.pyplot(fig_fit)
+
 
 # ----- QUESTION 2 -----
 
@@ -460,10 +620,70 @@ if(question=="Question 1"):
 
     if(method=="Method 1"):
         st.header("Vacation Planning using Genetic Algorithm (Method 1)")
+
+        value_lst_h1, fitness_history_h1 = ga(1, 4, 100, 250)
+        best_h1 = min_fitness_idx(value_lst_h1, fitness_history_h1)
+
+        value_lst_t1, fitness_history_t1 = ga(1, 6, 10, 300)
+        best_t1 = min_fitness_idx(value_lst_t1, fitness_history_t1)
+
+        value_lst_tr1, fitness_history_tr1 = ga(1, 20, 3, 100)
+        best_tr1 = min_fitness_idx(value_lst_tr1, fitness_history_tr1)
+
+        value_lst_f1, fitness_history_f1 = ga(1, 15, 3, 100)
+        best_f1 = min_fitness_idx(value_lst_f1, fitness_history_f1)
+
+        st.write('Hotel prices per night', best_h1)
+        st.write('Tourist spot prices per spot', best_t1)
+        st.write('Transport prices per trip', best_tr1)
+        st.write('Food prices per meal', best_f1)
+
+        total_m1 = sum(best_h1) + sum(best_t1) + sum(best_tr1) + sum(best_f1)
+        st.write('Total cost:', total_m1)
+
     elif(method=="Method 2"):
         st.header("Vacation Planning using Genetic Algorithm (Method 2)")
+        value_lst_h2, fitness_history_h2 = ga(2, 4, 100, 250)
+        best_h2 = min_fitness_idx(value_lst_h2, fitness_history_h2)
+
+        value_lst_t2, fitness_history_t2 = ga(2, 6, 10, 300)
+        best_t2 = min_fitness_idx(value_lst_t2, fitness_history_t2)
+
+        value_lst_tr2, fitness_history_tr2 = ga(2, 20, 3, 100)
+        best_tr2 = min_fitness_idx(value_lst_tr2, fitness_history_tr2)
+
+        value_lst_f2, fitness_history_f2 = ga(2, 15, 3, 100)
+        best_f2 = min_fitness_idx(value_lst_f2, fitness_history_f2)
+
+        st.write('Hotel prices per night', best_h2)
+        st.write('Tourist spot prices per spot', best_t2)
+        st.write('Transport prices per trip', best_tr2)
+        st.write('Food prices per meal', best_f2)
+
+        total_m2 = sum(best_h2) + sum(best_t2) + sum(best_tr2) + sum(best_f2)
+        st.write('Total cost:', total_m2)
+
     else:
         st.header("Vacation Planning using Genetic Algorithm (Method 3)")
+        value_lst_h3, fitness_history_h3 = ga(3, 4, 100, 250)
+        best_h3 = min_fitness_idx(value_lst_h3, fitness_history_h3)
+
+        value_lst_t3, fitness_history_t3 = ga(3, 6, 10, 300)
+        best_t3 = min_fitness_idx(value_lst_t3, fitness_history_t3)
+
+        value_lst_tr3, fitness_history_tr3 = ga(3, 20, 3, 100)
+        best_tr3 = min_fitness_idx(value_lst_tr3, fitness_history_tr3)
+
+        value_lst_f3, fitness_history_f3 = ga(3, 15, 3, 100)
+        best_f3 = min_fitness_idx(value_lst_f3, fitness_history_f3)
+
+        st.write('Hotel prices per night', best_h3)
+        st.write('Tourist spot prices per spot', best_t3)
+        st.write('Transport prices per trip', best_tr3)
+        st.write('Food prices per meal', best_f3)
+
+        total_m3 = sum(best_h3) + sum(best_t3) + sum(best_tr3) + sum(best_f3)
+        st.write('Total cost:', total_m3)
 
 elif(question=="Question 2"):
 
