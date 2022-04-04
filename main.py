@@ -636,7 +636,7 @@ else:
     # Visualize decision tree
     fn=X.columns
     cn=['Accept', 'Reject']
-    fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(4,4), dpi=3000)
+    fig, axes = plt.subplots(nrows=1, ncols=1)
     tree.plot_tree(dtc_model,
                 feature_names=fn,
                 class_names=cn,
@@ -691,7 +691,7 @@ else:
         distortions.append(km.inertia_)
 
     # Plot
-    fig_elbow, axes_elbow = plt.subplots(nrows=1, ncols=1, figsize=(2,2), dpi=400)
+    fig_elbow, axes_elbow = plt.subplots(nrows=1, ncols=1)
     plt.plot(range(2,11), distortions, marker='o')
     plt.xlabel('Number of clusters')
     plt.ylabel('Distortion')
@@ -723,7 +723,7 @@ else:
     # st.pyplot(fig_sil)
 
     # Plot scatter
-    fig_scatter, axes_scatter = plt.subplots(nrows=1, ncols=1, figsize=(2,2), dpi=400)
+    fig_scatter, axes_scatter = plt.subplots(nrows=1, ncols=1)
     sns.scatterplot(x='Loan_Amount', y='Total_Sum_of_Loan', hue='Cluster', data=df_clusters)
     plt.legend(bbox_to_anchor=(1.01, 1),
            borderaxespad=0)
