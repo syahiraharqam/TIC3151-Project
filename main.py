@@ -1,26 +1,26 @@
 # Import libraries
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn import preprocessing
+# import matplotlib.pyplot as plt
+# import seaborn as sns
+# from sklearn import preprocessing
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.cluster import KMeans
-from sklearn import preprocessing
-from sklearn.metrics import accuracy_score
-from sklearn import tree
-from sklearn.metrics import silhouette_score
-from yellowbrick.cluster import silhouette_visualizer
-import plotly.express as px
+# from sklearn.model_selection import train_test_split
+# from sklearn.tree import DecisionTreeClassifier
+# from sklearn.naive_bayes import GaussianNB
+# from sklearn.cluster import KMeans
+# from sklearn import preprocessing
+# from sklearn.metrics import accuracy_score
+# from sklearn import tree
+# from sklearn.metrics import silhouette_score
+# from yellowbrick.cluster import silhouette_visualizer
+# import plotly.express as px
 
-import constraint
-import math as m
+# import constraint
+# import math as m
 
-from random import randint
-import random
+# from random import randint
+# import random
 
 st.title("TIC3151 Project")
 
