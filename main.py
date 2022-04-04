@@ -717,11 +717,6 @@ else:
     sil_score = silhouette_score(X_encoded_cluster, km_model.labels_)
     st.write('Silhouette score (n =', params["n_clusters"], ' ):', sil_score)
 
-    # # Plot silhouette visualize
-    # fig_sil, axes_sil = plt.subplots(nrows=1, ncols=1, figsize=(4,4), dpi=3000)
-    # silhouette_visualizer(km_model, X_encoded_cluster, colors='yellowbrick')
-    # st.pyplot(fig_sil)
-
     # Plot scatter
     fig_scatter, axes_scatter = plt.subplots(nrows=1, ncols=1)
     sns.scatterplot(x='Loan_Amount', y='Total_Sum_of_Loan', hue='Cluster', data=df_clusters)
@@ -731,3 +726,8 @@ else:
     st.set_option('deprecation.showPyplotGlobalUse', False)
     st.pyplot(fig_scatter) 
 
+    # Number of values in each cluster
+    cluster_feat = st.sidebar.selectbox('Select feature', ('Employment_Type', 'Property_Type', 'State', 'Decision')) 
+    fig_count, axes_count = plt.subplots(nrows=1, ncols=1)
+    sns.countplot(x=df_clusters[cluster_feat], order=df_clusters[cluster_feat].value_counts().index, hue=df_clusters['Cluster'])
+    st.pyplot(fig_count) 
